@@ -770,12 +770,27 @@ var Instr_EC_3_posYellow_instruction = {
         },
     };
 
-// memory of valence - color of group
-var PosNegGrpOptions = ['the ' + genColor("#2a57ea", "blue") + ' group was paired with pleasant pictures and the ' + genColor("#b5a21b", "yellow") + ' group with unpleasant pictures ', 'the ' + genColor("#b5a21b", "yellow") + ' group was paired with pleasant pictures and the ' + genColor("#2a57ea", "blue") + ' group with unpleasant pictures ', 'I do not remember'];
+// memory of valence - color of group for the placebo condition 
+var PosNegGrpOptions_plac = ['the ' + genColor("#2a57ea", "blue") + ' group was paired with pleasant pictures and the ' + genColor("#b5a21b", "yellow") + ' group with unpleasant pictures ', 'the ' + genColor("#b5a21b", "yellow") + ' group was paired with pleasant pictures and the ' + genColor("#2a57ea", "blue") + ' group with unpleasant pictures ', 'I do not remember'];
 
-var reportedPairing = {
+var reportedPairing_plac = {
         type: 'survey-multi-choice',
-        questions: [{ prompt: "Please indicate how the two groups were paired with pleasant and unpleasant pictures: (if you do not remember, select the 'I do not remember' option)", options: PosNegGrpOptions, required: true }],
+        questions: [{ prompt: "Please report the instruction that we provided about how the two groups were paired with pleasant and unpleasant pictures: (if you do not remember, select the 'I do not remember' option)", options: PosNegGrpOptions_plac, required: true }],
+        button_label: "continue",
+        on_finish: function (data) {
+            jsPsych.data.addProperties({
+                reportedPairing: JSON.parse(data.responses).Q0,
+            });
+            console.log(data);
+        },
+    };
+
+// memory of valence - color of group for the instruction condition 
+var PosNegGrpOptions_instr = ['the ' + genColor("#2a57ea", "blue") + ' group will be paired with pleasant pictures and the ' + genColor("#b5a21b", "yellow") + ' group with unpleasant pictures ', 'the ' + genColor("#b5a21b", "yellow") + ' group will be paired with pleasant pictures and the ' + genColor("#2a57ea", "blue") + ' group with unpleasant pictures ', 'I do not remember'];
+
+var reportedPairing_instr = {
+        type: 'survey-multi-choice',
+        questions: [{ prompt: "Please report the instruction that we provided about how the two groups will be paired with pleasant and unpleasant pictures: (if you do not remember, select the 'I do not remember' option)", options: PosNegGrpOptions_instr, required: true }],
         button_label: "continue",
         on_finish: function (data) {
             jsPsych.data.addProperties({
@@ -969,50 +984,8 @@ var reportedPairing = {
   switch(pairing_cond) {
   case "placebo_blue_pos_G1B":
     timeline.push(Instr_EC_2_G1B,
-                    Instr_EC_3_posBlue_placebo
-                    );
-      break;
-  case "placebo_yellow_pos_G1B":
-    timeline.push(Instr_EC_2_G1B,
-                    Instr_EC_3_posYellow_placebo
-                    );
-    break;
-  case "placebo_blue_pos_G1Y":
-    timeline.push(Instr_EC_2_G1Y,
-                    Instr_EC_3_posBlue_placebo
-                    );
-      break;
-  case "placebo_yellow_pos_G1Y":
-    timeline.push(Instr_EC_2_G1Y,
-                    Instr_EC_3_posYellow_placebo
-                    );
-      break;
-  case "instruction_blue_pos_G1B":
-    timeline.push(Instr_EC_2_G1B,
-      Instr_EC_instruction_intermediary,
-                    Instr_EC_3_posBlue_instruction
-                    );
-      break;
-  case "instruction_yellow_pos_G1B":
-    timeline.push(Instr_EC_2_G1B,
-      Instr_EC_instruction_intermediary,
-                    Instr_EC_3_posYellow_instruction
-                    );
-    break;
-  case "instruction_blue_pos_G1Y":
-    timeline.push(Instr_EC_2_G1Y,
-      Instr_EC_instruction_intermediary,
-                    Instr_EC_3_posBlue_instruction
-                    );
-      break;
-  case "instruction_yellow_pos_G1Y":
-    timeline.push(Instr_EC_2_G1Y,
-      Instr_EC_instruction_intermediary,
-                    Instr_EC_3_posYellow_instruction
-                    );
-      break;
-  }
-timeline.push(RCinst1,
+                    Instr_EC_3_posBlue_placebo,
+                    RCinst1,
                     RCinst2,
                     RCinst3a,
                     RCinst4,
@@ -1023,8 +996,134 @@ timeline.push(RCinst1,
                     RC2,
                     Instr_Quest,
                     likingGrp,
-                    reportedPairing,
-                    demand_awareness,
+                    reportedPairing_plac
+                    );
+      break;
+  case "placebo_yellow_pos_G1B":
+    timeline.push(Instr_EC_2_G1B,
+                    Instr_EC_3_posYellow_placebo,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_plac
+                    );
+    break;
+  case "placebo_blue_pos_G1Y":
+    timeline.push(Instr_EC_2_G1Y,
+                    Instr_EC_3_posBlue_placebo,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_plac
+                    );
+      break;
+  case "placebo_yellow_pos_G1Y":
+    timeline.push(Instr_EC_2_G1Y,
+                    Instr_EC_3_posYellow_placebo,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_plac
+                    );
+      break;
+  case "instruction_blue_pos_G1B":
+    timeline.push(Instr_EC_2_G1B,
+      Instr_EC_instruction_intermediary,
+                    Instr_EC_3_posBlue_instruction,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_instr
+                    );
+      break;
+  case "instruction_yellow_pos_G1B":
+    timeline.push(Instr_EC_2_G1B,
+      Instr_EC_instruction_intermediary,
+                    Instr_EC_3_posYellow_instruction,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_instr
+                    );
+    break;
+  case "instruction_blue_pos_G1Y":
+    timeline.push(Instr_EC_2_G1Y,
+      Instr_EC_instruction_intermediary,
+                    Instr_EC_3_posBlue_instruction,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_instr
+                    );
+      break;
+  case "instruction_yellow_pos_G1Y":
+    timeline.push(Instr_EC_2_G1Y,
+      Instr_EC_instruction_intermediary,
+                    Instr_EC_3_posYellow_instruction,
+                    RCinst1,
+                    RCinst2,
+                    RCinst3a,
+                    RCinst4,
+                    RC1,
+                    RCinst5,
+                    RCinst3b,
+                    RCinst4,
+                    RC2,
+                    Instr_Quest,
+                    likingGrp,
+                    reportedPairing_instr
+                    );
+      break;
+  }
+timeline.push(demand_awareness,
                     influence_awareness,
                     demand_compliance,
                     age,
