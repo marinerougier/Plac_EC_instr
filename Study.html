@@ -433,7 +433,7 @@ var Instr_EC_instruction_intermediary = {
     stimulus: function () {
       var html = "";
       html += "<h1>TASK 1</h1>";
-      html += "<p class = 'justify'>In the previous task, <b>faces of the blue and yellow groups were both presented <u>as many times</u> with pleasant pictures as with unpleasant pictures </b>(the software randomly randomly paired faces with pictures). However, in the upcoming task, this will change. ";
+      html += "<p class = 'justify'>In the previous task, <b>faces of the blue and yellow groups were both presented <u>as many times</u> with pleasant pictures as with unpleasant pictures </b>(the software randomly paired faces with pictures). However, <b>in the upcoming task, this will change.</b> More information will follow. ";
       html += "<br><br>";
       html += "<p></br>Press <span class='light-keys'><kbd>space</kbd></span> to start Task 1</p>";
       return html;
@@ -790,7 +790,7 @@ var PosNegGrpOptions_instr = ['the ' + genColor("#2a57ea", "blue") + ' group wil
 
 var reportedPairing_instr = {
         type: 'survey-multi-choice',
-        questions: [{ prompt: "Please report the instruction that we provided about how the two groups will be paired with pleasant and unpleasant pictures: (if you do not remember, select the 'I do not remember' option)", options: PosNegGrpOptions_instr, required: true }],
+        questions: [{ prompt: "Please report the instruction that we provided about how the two groups will be paired with pleasant and unpleasant pictures in the upcoming task: (if you do not remember, select the 'I do not remember' option)", options: PosNegGrpOptions_instr, required: true }],
         button_label: "continue",
         on_finish: function (data) {
             jsPsych.data.addProperties({
