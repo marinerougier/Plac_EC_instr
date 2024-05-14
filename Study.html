@@ -1181,11 +1181,11 @@ timeline.push(demand_awareness,
 
       /* Send data to Firebase */
       database
-        .ref("EC_placebo/" + jspsych_id + "/")
+        .ref("EC_placebo_2/" + jspsych_id + "/")
         .update({ dataEC })
         .then(function () {
       database
-        .ref("EC_placebo/" + jspsych_id + "/")
+        .ref("EC_placebo_2/" + jspsych_id + "/")
         .update({ dataRC })
         .then(function () {
               console.log("Data sent!");
